@@ -19,6 +19,15 @@ Then open http://localhost:8000.
 
 To publish it with GitHub Pages, go to **Settings → Pages**, choose **Deploy from a branch**, and pick `main` with the `/ (root)` folder.
 
+### Deploying to Render
+
+The repo includes a `render.yaml` Blueprint for a free Render static site.
+
+1. In the [Render dashboard](https://dashboard.render.com), choose **New → Blueprint** and connect this GitHub repo.
+2. Render reads `render.yaml` and creates a static site named `chronoglobe`. Click **Apply**.
+
+To set it up by hand instead, choose **New → Static Site**, pick the repo, leave **Build Command** empty (or `echo "No build step"`), and set **Publish Directory** to `.`. Every push to `main` redeploys.
+
 ## Files
 
 | Path | What it is |
@@ -27,6 +36,7 @@ To publish it with GitHub Pages, go to **Settings → Pages**, choose **Deploy f
 | `maps/world.json` | Every territory from 1900 to 2019 as TopoJSON. Each one has its start and end dates plus a list of periods: name, ruler and capital. |
 | `maps/land.json` | Coastlines, drawn under the borders. |
 | `scripts/history.js` | Hand-written table of period names, colonial rulers, independence dates and capital corrections. |
+| `render.yaml` | Render Blueprint: static site, no build step. |
 | `scripts/build-map.js` | Combines CShapes with `history.js` to produce the data in `maps/world.json`. |
 
 ## Rebuilding the map data

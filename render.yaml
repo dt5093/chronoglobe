@@ -1,0 +1,16 @@
+# Render Blueprint: deploys Chronoglobe as a free static site.
+# In Render: New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: chronoglobe
+    runtime: static
+    buildCommand: echo "No build step"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /maps/*
+        name: Cache-Control
+        value: public, max-age=86400
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
